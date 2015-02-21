@@ -32,5 +32,10 @@ cleaned <- cbind(subject_all, y_all, x_all)
 write.table(cleaned, "file1.txt")
 
 # 5.From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+a <- cleaned[, 3:dim(cleaned)[2]] 
+  data2 <- aggregate(a,list(cleaned$Subject, cleaned$Activity), mean)
+# Activity and Subject name of columns 
+  names(data2)[1] <- "Subject"
+  names(data2)[2] <- "Activity"
 #write to text file on disk
 write.table(result,file="TidyDataSet.txt", row.name=FALSE)
